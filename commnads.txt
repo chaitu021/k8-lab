@@ -1,0 +1,12 @@
+#commonly used commands
+kubectl config current-context
+kubectl config get-contexts
+kubectl get namespaces
+
+kubectl get pods -A -o wide
+kubectl get pods <pod-name>
+kubectl describe pod
+kubectl edit pod <pod-name>
+
+kubectl apply -f file.yaml
+
