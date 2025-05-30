@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: repeat
+  name: repeat
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: repeat
+  template:
+    metadata:
+      labels:
+        app: repeat
+    spec:
+      containers:
+      - image: nginx:bookworm
+        name: nginx
+  strategy:
+    type: Recreate

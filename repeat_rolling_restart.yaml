@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: repeat
+  name: repeat
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: repeat
+  template:
+    metadata:
+      labels:
+        app: repeat
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

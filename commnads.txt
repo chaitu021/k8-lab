@@ -8,5 +8,12 @@ kubectl get pods <pod-name>
 kubectl describe pod
 kubectl edit pod <pod-name>
 
+kubectl run ngnx-yml --image=nginx --dry-run=client -o yaml
 kubectl apply -f file.yaml
+kubectl delete pod
 
+kubectl create deploy testdeploy --image=nginx -r=3 (--dry-run=client -o yaml)
+kubectl get deploy
+kubectl describe deploy
+kubectl get replicaSet
+kubectl apply -f repeat.yaml

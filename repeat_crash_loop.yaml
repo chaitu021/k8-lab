@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: repeat
+  name: repeat
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: repeat
+  template:
+    metadata:
+      labels:
+        app: repeat
+    spec:
+      containers:
+        - image: nginx:otel
+          name: nginx
+          command: ["/bin/bash", "-c"]
+          args: ["sleep 5", "exit 1"]
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
