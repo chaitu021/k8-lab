@@ -1,19 +1,33 @@
 #commonly used commands
 kubectl config current-context
 kubectl config get-contexts
-kubectl get namespaces
+kubectl config set-context --current --namespace=<name_space>
+kubectl explain pods
 
+kubectl run nginx --image=nginx --namespace=<name_space>
 kubectl get pods -A -o wide
-kubectl get pods <pod-name>
+kubectl get pods <pod-name> -n <name_space>
+kubectl exec -it storage-share -c <container-name> -- sh/bash
 kubectl describe pod
-kubectl edit pod <pod-name>
+kubectl edit/delete pod <pod-name>
 
 kubectl run ngnx-yml --image=nginx --dry-run=client -o yaml
 kubectl apply -f file.yaml
-kubectl delete pod
+kubectl delete pod <pod-1> <pod-2>
 
 kubectl create deploy testdeploy --image=nginx -r=3 (--dry-run=client -o yaml)
 kubectl get deploy
 kubectl describe deploy
 kubectl get replicaSet
 kubectl apply -f repeat.yaml
+kubectl delete deploy repeat
+
+- Namespaces provide a mechanism for isolating groups of resources within a single cluster.
+- Namespace-based scoping is applicable only for namespaced objects (e.g. Deployments, Services, etc.)
+  and not for cluster-wide objects (e.g. StorageClass, Nodes, PersistentVolumes, etc.).
+kubectl create namespace test -o yaml
+kubectl get namespace
+
+kubectl get storageclass
+kubectl get persistentvolume
+kubectl get persistentvolumeClaim

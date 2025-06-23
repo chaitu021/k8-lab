@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+  name: storage-share
+spec:
+  containers:
+  - image: nginx
+    name: nginx-pod
+    volumeMounts:
+      - mountPath: /rama-folder
+        name: scratch-volume
+  - image: busybox
+    name: busybox-pod
+    command: ["/bin/sh", "-c"]
+    args: ["sleep 1000"]
+    volumeMounts:
+      - mountPath: /rama-folder
+        name: scratch-volume
+  volumes:
+    - name: scratch-volume
+      persistentVolumeClaim:
+        claimName: test-pv
